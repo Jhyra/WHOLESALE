@@ -14,27 +14,26 @@ if(isset($_POST['update']))
 {	
 	$id = $_POST['id'];
 	
-	$firstname = $_POST['firstname'];
-	$lastname = $_POST['lastname'];
-	$phone_number = $_POST['phone_number'];
-	$address = $_POST['address'];
+	$firstname = $_POST['description'];
+	$lastname = $_POST['quantity'];
+	$position = $_POST['price'];
 	
-	$result = mysqli_query($db, "UPDATE customer SET firstname='$firstname', lastname='$lastname', phone_number='$phone_number', address='$address' WHERE id=$id");
+	$result = mysqli_query($db, "UPDATE product SET description='$description', quantity='$quantity', price='$price' WHERE id=$id");
 		
-		header("Location: cusview.php");
+		header("Location: proview.php");
 }
 ?>
 <?php
 $id = $_GET['id'];
 
-$result = mysqli_query($db, "SELECT * FROM customer WHERE id=$id");
+$result = mysqli_query($db, "SELECT * FROM product WHERE id=$id");
 
 while($res = mysqli_fetch_array($result))
 {
-	$firstname = $res['firstname'];
-	$lastname = $res['lastname'];
-	$phone_number = $res['phone_number'];
-	$address = $res['address'];
+	$firstname = $res['description'];
+	$lastname = $res['quantity'];
+	$position = $res['price'];
+
 }
 ?>
 <!DOCTYPE html>
@@ -53,7 +52,7 @@ while($res = mysqli_fetch_array($result))
 		body {
 			background-image: url(img/aa.jpg);
 			color: white;
-			width: 80%;
+			width: 100%;
 		}
 	</style>
 </head>
@@ -68,35 +67,30 @@ while($res = mysqli_fetch_array($result))
       <a href="view.php" class="w3-bar-item w3-button">Employee</a>
       <a href="proview.php" class="w3-bar-item w3-button">Product</a>
 	  <a href="#menu" class="w3-bar-item w3-button">Sales</a>
-	  
+	  <a href="#menu" class="w3-bar-item w3-button">Sales Item</a>
+	  <a href="#menu" class="w3-bar-item w3-button">Salary</a>
       <a href="index.php" class="w3-bar-item w3-button">Logout</a>
     </div>
   </div>
 </div>
 <br><br><br>
-		<form name="form1" method="post" action="cusedit.php">
+		<form name="form1" method="post" action="proedit.php">
 			<div class="form-group row">
-				<label for="colFormLabel" class="col-sm-2 col-form-label">firstname</label>
+				<label for="colFormLabel" class="col-sm-2 col-form-label">description</label>
 					<div class="col-sm-5">
-						<input type="text" name="firstname" value="<?php echo $firstname;?>" class="form-control" id="colFormLabel">
+						<input type="text" name="description" value="<?php echo $description;?>" class="form-control" id="colFormLabel">
 					</div>
 			</div>
 			<div class="form-group row">
-				<label for="colFormLabel" class="col-sm-2 col-form-label">lastname</label>
+				<label for="colFormLabel" class="col-sm-2 col-form-label">quantity</label>
 					<div class="col-sm-5">
-						<input type="text" name="lastname" value="<?php echo $lastname;?>" class="form-control" id="colFormLabel">
+						<input type="text" name="quantity" value="<?php echo $quantity;?>" class="form-control" id="colFormLabel">
 					</div>
 			</div>
 			<div class="form-group row">
-				<label for="colFormLabel" class="col-sm-2 col-form-label">contactno.</label>
+				<label for="colFormLabel" class="col-sm-2 col-form-label">price</label>
 					<div class="col-sm-5">
-						<input type="text" name="phone_number" value="<?php echo $phone_number;?>" class="form-control" id="colFormLabel">
-					</div>
-			</div>
-			<div class="form-group row">
-				<label for="colFormLabel" class="col-sm-2 col-form-label">address</label>
-					<div class="col-sm-5">
-						<input type="text" name="address" value="<?php echo $address;?>" class="form-control" id="colFormLabel">
+						<input type="number" name="number" value="<?php echo $number;?>" class="form-control" id="colFormLabel">
 					</div>
 			</div>
 			<div class="form-group row">

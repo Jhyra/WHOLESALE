@@ -7,15 +7,25 @@
 	<link rel="stylesheet" href="bootstrap-4.0.0-beta.3-dist/jss/bootstrap.js">
 	<script src="bootstrap-4.0.0-beta.3-dist/jquery/jquery.min.js"></script>
 	<script src="bootstrap-4.0.0-beta.3-dist/js/bootstrap.bundle.min.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<style>
 		body {
-			background-image: url(img/aaa.jpg);
+			background-image: url(img/aa.jpg);
 			color: white;
-			width: 80%;
+			width: 100%;
 		}
 	</style>
 </head>
 <body>
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-padding w3-card" style="letter-spacing:4px;">
+    <a class="w3-bar-item">Tindahan ng Bayan</a>
+    </div>
+  </div>
+</div>
 				<nav class="navbar navbar-light bg-transparent">
 					<a class="navbar-brand" href="register.php">
 							
@@ -23,7 +33,7 @@
 				</nav>
 		</nav>
 	</nav>
-
+<br><br><br>
 <?php
 include("connection.php");
 

@@ -14,9 +14,12 @@ if(!isset($_SESSION['valid'])) {
 	<link rel="stylesheet" href="bootstrap-4.0.0-beta.3-dist/jss/bootstrap.js">
 	<script src="bootstrap-4.0.0-beta.3-dist/jquery/jquery.min.js"></script>
 	<script src="bootstrap-4.0.0-beta.3-dist/js/bootstrap.bundle.min.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<style>
 		body {
-			background-image: url(img/aaa.jpg);
+			background-image: url(img/aa.jpg);
 			color: white;
 			width: 100%;
 		}
@@ -24,20 +27,20 @@ if(!isset($_SESSION['valid'])) {
 </head>
 
 <body>
-					<nav class="navbar navbar-expand-lg navbar-success bg-transparent">
-							<div class="collapse navbar-collapse" id="navbarSupportedContent">
-								<ul class="navbar-nav mr-auto">
-									<li class="nav-item active">
-									</li>
-								</ul>
-											</div>
-										</li>
-									</ul>
-								</form>
-							</div>
-					</nav>
-		     </div>
-<br>
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-padding w3-card" style="letter-spacing:4px;">
+    <a class="w3-bar-item">Tindahan ng Bayan</a>
+    <!-- Right-sided navbar links. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+      <a href="cusview.php" class="w3-bar-item w3-button">Customer</a>
+      <a href="proview.php" class="w3-bar-item w3-button">Product</a>
+	  <a href="#menu" class="w3-bar-item w3-button">Sales</a>
+      <a href="index.php" class="w3-bar-item w3-button">Logout</a>
+    </div>
+  </div>
+</div>
+<br><br><br><br><br><br>
 <?php
 
 include_once("connection.php");
@@ -46,18 +49,18 @@ if(isset($_POST['Submit'])) {
 	$firstname = $_POST['firstname'];
 	$lastname = $_POST['lastname'];
 	$phone_number = $_POST['phone_number'];
-	$email = $_POST['email'];
 	$address = $_POST['address'];
 	$loginId = $_SESSION['id'];
 	
 		
-	$result = mysqli_query($db, "INSERT INTO customer(firstname, lastname, phone_number, email, address, login_id) VALUES('$firstname', '$lastname', '$phone_number', '$email', '$address', '$loginId')");
-		header('location: view.php');
+	$result = mysqli_query($db, "INSERT INTO customer(firstname, lastname, phone_number, address, login_id) VALUES('$firstname', '$lastname', '$phone_number', '$address', '$loginId')");
+		header('location: cusview.php');
 	} 
 ?>
 <div class="container">
-	<form action="add.php" method="post" name="form1">
+	<form action="cusadd.php" method="post" name="form1">
 		<div class="form-group row">
+		
 			<label for="colFormLabel" class="col-sm-2 col-form-label">firstname :</label>
 				<div class="col-sm-5">
 					<input type="text" name="firstname" class="form-control" id="colFormLabel" required>
@@ -73,12 +76,6 @@ if(isset($_POST['Submit'])) {
 			<label for="colFormLabel" class="col-sm-2 col-form-label">contactno :</label>
 				<div class="col-sm-5">
 					<input type="number" name="phone_number" class="form-control" id="colFormLabel" required>
-				</div>
-		</div>
-		<div class="form-group row">
-			<label for="colFormLabel" class="col-sm-2 col-form-label">email :</label>
-				<div class="col-sm-5">
-					<input type="email" name="email" class="form-control" id="colFormLabel" required>
 				</div>
 		</div>
 		<div class="form-group row">
