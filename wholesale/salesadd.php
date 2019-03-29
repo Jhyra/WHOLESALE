@@ -36,9 +36,9 @@ if(!isset($_SESSION['valid'])) {
 	  <a href="view.php" class="w3-bar-item w3-button">Employee</a>
       <a href="cusview.php" class="w3-bar-item w3-button">Customer</a>
       <a href="proview.php" class="w3-bar-item w3-button">Product</a>
-	  <a href="#menu" class="w3-bar-item w3-button">Sales</a>
-	  <a href="#menu" class="w3-bar-item w3-button">Sales Item</a>
-	  <a href="#menu" class="w3-bar-item w3-button">Salary</a>
+	  <a href="salesview.php" class="w3-bar-item w3-button">Sales</a>
+	  <a href="salesitemview.php" class="w3-bar-item w3-button">Sales Item</a>
+	  <a href="salview.php" class="w3-bar-item w3-button">Salary</a>
       <a href="index.php" class="w3-bar-item w3-button">Logout</a>
     </div>
   </div>
@@ -49,39 +49,39 @@ if(!isset($_SESSION['valid'])) {
 include_once("connection.php");
 
 if(isset($_POST['Submit'])) {	
-	$prod_id = $_POST['prod_id'];
-	$description = $_POST['description'];
-	$quantity = $_POST['quantity'];
-	$price = $_POST['price'];	
+	$sales_id = $_POST['sales_id'];
+	$date = $_POST['date'];
+	$cus_id = $_POST['cus_id'];
+	$emp_id = $_POST['emp_id'];	
 		
-	$result = mysqli_query($db, "INSERT INTO product(prod_id, description, quantity, price) VALUES('$prod_id', '$description', '$quantity', '$price')");
-		header('location: proview.php');
+	$result = mysqli_query($db, "INSERT INTO sales(sales_id, date, cus_id, emp_id) VALUES('$sales_id', '$date', '$cus_id', '$emp_id')");
+		header('location: salesview.php');
 	} 
 ?>
 <div class="container">
-	<form action="proadd.php" method="post" name="form1">
+	<form action="salesadd.php" method="post" name="form1">
 		<div class="form-group row">
-			<label for="colFormLabel" class="col-sm-2 col-form-label">prod_id:</label>
+			<label for="colFormLabel" class="col-sm-2 col-form-label">sales_id:</label>
 				<div class="col-sm-5">
-					<input type="number" name="prod_id" class="form-control" id="colFormLabel" required>
+					<input type="number" name="sales_id" class="form-control" id="colFormLabel" required>
 				</div>
 		</div>
 		<div class="form-group row">
-			<label for="colFormLabel" class="col-sm-2 col-form-label">description:</label>
+			<label for="colFormLabel" class="col-sm-2 col-form-label">date:</label>
 				<div class="col-sm-5">
-					<input type="text" name="description" class="form-control" id="colFormLabel" required>
+					<input type="date" name="date" class="form-control" id="colFormLabel" required>
 				</div>
 		</div>
 		<div class="form-group row">
-			<label for="colFormLabel" class="col-sm-2 col-form-label">quantity:</label>
+			<label for="colFormLabel" class="col-sm-2 col-form-label">cus_id:</label>
 				<div class="col-sm-5">
-					<input type="text" name="quantity" class="form-control" id="colFormLabel" required>
+					<input type="number" name="number" class="form-control" id="colFormLabel" required>
 				</div>
 		</div>
 		<div class="form-group row">
-			<label for="colFormLabel" class="col-sm-2 col-form-label">price:</label>
+			<label for="colFormLabel" class="col-sm-2 col-form-label">emp_id:</label>
 				<div class="col-sm-5">
-					<input type="number" name="price" class="form-control" id="colFormLabel" required>
+					<input type="number" name="emp_id" class="form-control" id="colFormLabel" required>
 				</div>
 		</div>
 		<div class="form-group row">

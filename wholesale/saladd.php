@@ -36,9 +36,9 @@ if(!isset($_SESSION['valid'])) {
 	  <a href="view.php" class="w3-bar-item w3-button">Employee</a>
       <a href="cusview.php" class="w3-bar-item w3-button">Customer</a>
       <a href="proview.php" class="w3-bar-item w3-button">Product</a>
-	  <a href="#menu" class="w3-bar-item w3-button">Sales</a>
-	  <a href="#menu" class="w3-bar-item w3-button">Sales Item</a>
-	  <a href="#menu" class="w3-bar-item w3-button">Salary</a>
+	  <a href="salesview.php" class="w3-bar-item w3-button">Sales</a>
+	  <a href="salesitemview.php" class="w3-bar-item w3-button">Sales Item</a>
+	  <a href="salview.php" class="w3-bar-item w3-button">Salary</a>
       <a href="index.php" class="w3-bar-item w3-button">Logout</a>
     </div>
   </div>
@@ -47,41 +47,48 @@ if(!isset($_SESSION['valid'])) {
 <?php
 
 include_once("connection.php");
-
-if(isset($_POST['Submit'])) {	
-	$prod_id = $_POST['prod_id'];
-	$description = $_POST['description'];
-	$quantity = $_POST['quantity'];
-	$price = $_POST['price'];	
 		
-	$result = mysqli_query($db, "INSERT INTO product(prod_id, description, quantity, price) VALUES('$prod_id', '$description', '$quantity', '$price')");
-		header('location: proview.php');
+if(isset($_POST['Submit'])) {	
+	$emp_id = $_POST['emp_id'];
+	$salary = $_POST['salary'];
+	$date = $_POST['date'];
+	
+	$result = mysqli_query($db, "INSERT INTO salary(emp_id, salary, date) VALUES('$emp_id', '$salary', '$date')");
+		header('location: salview.php');
 	} 
 ?>
 <div class="container">
-	<form action="proadd.php" method="post" name="form1">
+	<form action="saladd.php" method="post" name="form1">
 		<div class="form-group row">
-			<label for="colFormLabel" class="col-sm-2 col-form-label">prod_id:</label>
+			<label for="colFormLabel" class="col-sm-2 col-form-label">emp_id:</label>
 				<div class="col-sm-5">
-					<input type="number" name="prod_id" class="form-control" id="colFormLabel" required>
+					<select name="emp_id" class="form-control" id="colFormLabel">
+					<?php 
+						$sql = "SELECT * FROM employee";
+						$result = mysqli_query($db,$sql);
+						if(mysqli_num_rows($result)){
+							while($row = mysqli_fetch_array($result)){
+								?>
+								<option value="<?php echo $row['emp_id'];?>">
+									<?php echo $row['emp_id'] ." ".$row['firstname'] ." ".$row['lastname']?>
+								</option>
+								<?php
+							}
+						}
+					?>
+					</select>
 				</div>
 		</div>
 		<div class="form-group row">
-			<label for="colFormLabel" class="col-sm-2 col-form-label">description:</label>
+			<label for="colFormLabel" class="col-sm-2 col-form-label">salary:</label>
 				<div class="col-sm-5">
-					<input type="text" name="description" class="form-control" id="colFormLabel" required>
+					<input type="number" name="salary" class="form-control" id="colFormLabel" required>
 				</div>
-		</div>
+						</div>
 		<div class="form-group row">
-			<label for="colFormLabel" class="col-sm-2 col-form-label">quantity:</label>
+			<label for="colFormLabel" class="col-sm-2 col-form-label">date:</label>
 				<div class="col-sm-5">
-					<input type="text" name="quantity" class="form-control" id="colFormLabel" required>
-				</div>
-		</div>
-		<div class="form-group row">
-			<label for="colFormLabel" class="col-sm-2 col-form-label">price:</label>
-				<div class="col-sm-5">
-					<input type="number" name="price" class="form-control" id="colFormLabel" required>
+					<input type="date" name="date" class="form-control" id="colFormLabel" required>
 				</div>
 		</div>
 		<div class="form-group row">

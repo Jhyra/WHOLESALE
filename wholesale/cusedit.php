@@ -12,28 +12,28 @@ include_once("connection.php");
 
 if(isset($_POST['update']))
 {	
-	$id = $_POST['id'];
-	
+	$cus_id = $_POST['cus_id'];
 	$firstname = $_POST['firstname'];
 	$lastname = $_POST['lastname'];
-	$phone_number = $_POST['phone_number'];
+	$contactno = $_POST['contactno'];
 	$address = $_POST['address'];
 	
-	$result = mysqli_query($db, "UPDATE customer SET firstname='$firstname', lastname='$lastname', phone_number='$phone_number', address='$address' WHERE id=$id");
+	$result = mysqli_query($db, "UPDATE customer SET cus_id='$cus_id', firstname='$firstname', lastname='$lastname', contactno='$contactno', address='$address");
 		
 		header("Location: cusview.php");
 }
 ?>
 <?php
-$id = $_GET['id'];
+$cus_id = $_GET['cus_id'];
 
-$result = mysqli_query($db, "SELECT * FROM customer WHERE id=$id");
+$result = mysqli_query($db, "SELECT * FROM customer WHERE cus_id=$cus_id");
 
 while($res = mysqli_fetch_array($result))
 {
+	$cus_id = $res['cus_id'];
 	$firstname = $res['firstname'];
 	$lastname = $res['lastname'];
-	$phone_number = $res['phone_number'];
+	$contactno = $res['contactno'];
 	$address = $res['address'];
 }
 ?>
@@ -67,7 +67,9 @@ while($res = mysqli_fetch_array($result))
     <div class="w3-right w3-hide-small">
       <a href="view.php" class="w3-bar-item w3-button">Employee</a>
       <a href="proview.php" class="w3-bar-item w3-button">Product</a>
-	  <a href="#menu" class="w3-bar-item w3-button">Sales</a>
+	  <a href="salesview.php" class="w3-bar-item w3-button">Sales</a>
+	  <a href="salesitemview.php" class="w3-bar-item w3-button">Sales Item</a>
+	  <a href="salview.php" class="w3-bar-item w3-button">Salary</a>
 	  
       <a href="index.php" class="w3-bar-item w3-button">Logout</a>
     </div>
@@ -75,6 +77,12 @@ while($res = mysqli_fetch_array($result))
 </div>
 <br><br><br>
 		<form name="form1" method="post" action="cusedit.php">
+			<div class="form-group row">
+				<label for="colFormLabel" class="col-sm-2 col-form-label">cus_id</label>
+					<div class="col-sm-5">
+						<input type="number" name="cus_id" value="<?php echo $cus_id;?>" class="form-control" id="colFormLabel">
+					</div>
+			</div>
 			<div class="form-group row">
 				<label for="colFormLabel" class="col-sm-2 col-form-label">firstname</label>
 					<div class="col-sm-5">
@@ -88,9 +96,9 @@ while($res = mysqli_fetch_array($result))
 					</div>
 			</div>
 			<div class="form-group row">
-				<label for="colFormLabel" class="col-sm-2 col-form-label">contactno.</label>
+				<label for="colFormLabel" class="col-sm-2 col-form-label">contactno</label>
 					<div class="col-sm-5">
-						<input type="text" name="phone_number" value="<?php echo $phone_number;?>" class="form-control" id="colFormLabel">
+						<input type="number" name="contactno" value="<?php echo $contactno;?>" class="form-control" id="colFormLabel">
 					</div>
 			</div>
 			<div class="form-group row">
@@ -102,7 +110,7 @@ while($res = mysqli_fetch_array($result))
 			<div class="form-group row">
 				<label for="colFormLabel" class="col-sm-2 col-form-label"></label>	
 					<div class="col-sm-10">
-						<input type="hidden" name="id" value=<?php echo $_GET['id'];?>>
+						<input type="hidden" name="cus_id" value=<?php echo $_GET['cus_id'];?>>
 							<button class="btn btn-outline-success" type="submit" name="update" value="Update">update</button>
 					</div>
 			</div>

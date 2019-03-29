@@ -12,27 +12,27 @@ include_once("connection.php");
 
 if(isset($_POST['update']))
 {	
-	$id = $_POST['id'];
+	$prod_id = $_POST['prod_id'];
+	$description = $_POST['description'];
+	$quantity = $_POST['quantity'];
+	$price = $_POST['price'];
 	
-	$firstname = $_POST['description'];
-	$lastname = $_POST['quantity'];
-	$position = $_POST['price'];
-	
-	$result = mysqli_query($db, "UPDATE product SET description='$description', quantity='$quantity', price='$price' WHERE id=$id");
+	$result = mysqli_query($db, "UPDATE product SET prod_id='$prod_id', description='$description', quantity='$quantity', price='$price' WHERE prod_id=$prod_id");
 		
 		header("Location: proview.php");
 }
 ?>
 <?php
-$id = $_GET['id'];
+$prod_id = $_GET['prod_id'];
 
-$result = mysqli_query($db, "SELECT * FROM product WHERE id=$id");
+$result = mysqli_query($db, "SELECT * FROM product WHERE prod_id=$prod_id");
 
 while($res = mysqli_fetch_array($result))
 {
-	$firstname = $res['description'];
-	$lastname = $res['quantity'];
-	$position = $res['price'];
+	$prod_id = $res['prod_id'];
+	$description = $res['description'];
+	$quantity = $res['quantity'];
+	$price = $res['price'];
 
 }
 ?>
@@ -65,16 +65,23 @@ while($res = mysqli_fetch_array($result))
     <!-- Right-sided navbar links. Hide them on small screens -->
     <div class="w3-right w3-hide-small">
       <a href="view.php" class="w3-bar-item w3-button">Employee</a>
+	  <a href="cusview.php" class="w3-bar-item w3-button">Customer</a>
       <a href="proview.php" class="w3-bar-item w3-button">Product</a>
-	  <a href="#menu" class="w3-bar-item w3-button">Sales</a>
-	  <a href="#menu" class="w3-bar-item w3-button">Sales Item</a>
-	  <a href="#menu" class="w3-bar-item w3-button">Salary</a>
+	  <a href="salesview" class="w3-bar-item w3-button">Sales</a>
+	  <a href="salesitemview.php" class="w3-bar-item w3-button">Sales Item</a>
+	  <a href="salview.php" class="w3-bar-item w3-button">Salary</a>
       <a href="index.php" class="w3-bar-item w3-button">Logout</a>
     </div>
   </div>
 </div>
 <br><br><br>
 		<form name="form1" method="post" action="proedit.php">
+			<div class="form-group row">
+				<label for="colFormLabel" class="col-sm-2 col-form-label">prod_id</label>
+					<div class="col-sm-5">
+						<input type="number" name="prod_id" value="<?php echo $prod_id;?>" class="form-control" id="colFormLabel">
+					</div>
+			</div>
 			<div class="form-group row">
 				<label for="colFormLabel" class="col-sm-2 col-form-label">description</label>
 					<div class="col-sm-5">
@@ -90,13 +97,13 @@ while($res = mysqli_fetch_array($result))
 			<div class="form-group row">
 				<label for="colFormLabel" class="col-sm-2 col-form-label">price</label>
 					<div class="col-sm-5">
-						<input type="number" name="number" value="<?php echo $number;?>" class="form-control" id="colFormLabel">
+						<input type="number" name="price" value="<?php echo $price;?>" class="form-control" id="colFormLabel">
 					</div>
 			</div>
 			<div class="form-group row">
 				<label for="colFormLabel" class="col-sm-2 col-form-label"></label>	
 					<div class="col-sm-10">
-						<input type="hidden" name="id" value=<?php echo $_GET['id'];?>>
+						<input type="hidden" name="prod_id" value=<?php echo $_GET['prod_id'];?>>
 							<button class="btn btn-outline-success" type="submit" name="update" value="Update">update</button>
 					</div>
 			</div>

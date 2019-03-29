@@ -9,7 +9,7 @@ if(!isset($_SESSION['valid'])) {
 <?php	
 include_once("connection.php");
 
-$result = mysqli_query($db, "SELECT * FROM product WHERE login_id=".$_SESSION['id']." ORDER BY id DESC");
+$result = mysqli_query($db, "SELECT * FROM product ORDER BY prod_id DESC");
 ?>
 
 <!DOCTYPE html>
@@ -43,9 +43,9 @@ $result = mysqli_query($db, "SELECT * FROM product WHERE login_id=".$_SESSION['i
 	  <a href="view.php" class="w3-bar-item w3-button">Employee</a>
       <a href="cusview.php" class="w3-bar-item w3-button">Customer</a>
       <a href="proview.php" class="w3-bar-item w3-button">Product</a>
-	  <a href="#menu" class="w3-bar-item w3-button">Sales</a>
-	  <a href="#menu" class="w3-bar-item w3-button">Sales Item</a>
-	  <a href="#menu" class="w3-bar-item w3-button">Salary</a>
+	  <a href="salesview.php" class="w3-bar-item w3-button">Sales</a>
+	  <a href="salesitemview.php" class="w3-bar-item w3-button">Sales Item</a>
+	  <a href="salview.php" class="w3-bar-item w3-button">Salary</a>
       <a href="index.php" class="w3-bar-item w3-button">Logout</a>
     </div>
   </div>
@@ -54,6 +54,7 @@ $result = mysqli_query($db, "SELECT * FROM product WHERE login_id=".$_SESSION['i
 	<div class="container">
 		<table class="table">
 			<tr bgcolor='gray'>
+			<td>prod_id</td>
 			<td>description</td>
 			<td>quantity</td>
 			<td>price</td>
@@ -62,10 +63,11 @@ $result = mysqli_query($db, "SELECT * FROM product WHERE login_id=".$_SESSION['i
 		<?php
 		while($res = mysqli_fetch_array($result)) {		
 			echo "<tr>";
+			echo "<td>".$res['prod_id']."</td>";
 			echo "<td>".$res['description']."</td>";
 			echo "<td>".$res['quantity']."</td>";
 			echo "<td>".$res['price']."</td>";
-			echo "<td><a href=\"proedit.php?id=$res[id]\">Edit</a> | <a href=\"prodelete.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";		
+			echo "<td><a href=\"proedit.php?prod_id=$res[prod_id]\">Edit</a> | <a href=\"prodelete.php?prod_id=$res[prod_id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";		
 		}
 		?>
   <tbody>

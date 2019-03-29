@@ -9,7 +9,7 @@ if(!isset($_SESSION['valid'])) {
 <?php	
 include_once("connection.php");
 
-$result = mysqli_query($db, "SELECT * FROM customer WHERE login_id=".$_SESSION['id']." ORDER BY id DESC");
+$result = mysqli_query($db, "SELECT * FROM customer ORDER BY cus_id DESC");
 ?>
 
 <!DOCTYPE html>
@@ -41,10 +41,11 @@ $result = mysqli_query($db, "SELECT * FROM customer WHERE login_id=".$_SESSION['
     <!-- Right-sided navbar links. Hide them on small screens -->
     <div class="w3-right w3-hide-small">
       <a href="view.php" class="w3-bar-item w3-button">Employee</a>
+	  <a href="cusview.php" class="w3-bar-item w3-button">Customer</a>
       <a href="proview.php" class="w3-bar-item w3-button">Product</a>
-	  <a href="#menu" class="w3-bar-item w3-button">Sales</a>
-	  <a href="#menu" class="w3-bar-item w3-button">Sales Item</a>
-	  <a href="#menu" class="w3-bar-item w3-button">Salary</a>
+	  <a href="salesview.php" class="w3-bar-item w3-button">Sales</a>
+	  <a href="salesitemview.php" class="w3-bar-item w3-button">Sales Item</a>
+	  <a href="salview.php" class="w3-bar-item w3-button">Salary</a>
       <a href="index.php" class="w3-bar-item w3-button">Logout</a>
     </div>
   </div>
@@ -53,20 +54,22 @@ $result = mysqli_query($db, "SELECT * FROM customer WHERE login_id=".$_SESSION['
 	<div class="container">
 		<table class="table">
 			<tr bgcolor='gray'>
+			<td>cus_id</td>
 			<td>firstname</td>
 			<td>lastname</td>
-			<td>phonenumber</td>
+			<td>contactno</td>
 			<td>address</td>
 			<td>action</td>
 		</tr>
 		<?php
 		while($res = mysqli_fetch_array($result)) {		
 			echo "<tr>";
+			echo "<td>".$res['cus_id']."</td>";
 			echo "<td>".$res['firstname']."</td>";
 			echo "<td>".$res['lastname']."</td>";
-			echo "<td>".$res['phone_number']."</td>";
+			echo "<td>".$res['contactno']."</td>";
 			echo "<td>".$res['address']."</td>";
-			echo "<td><a href=\"cusedit.php?id=$res[id]\">Edit</a> | <a href=\"cusdelete.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";		
+			echo "<td><a href=\"cusedit.php?cus_id=$res[cus_id]\">Edit</a> | <a href=\"cusdelete.php?cus_id=$res[cus_id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";		
 		}
 		?>
   <tbody>

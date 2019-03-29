@@ -12,27 +12,31 @@ include_once("connection.php");
 
 if(isset($_POST['update']))
 {	
-	$emp_id = $_POST['emp_id'];
-	$firstname = $_POST['firstname'];
-	$middlename = $_POST['middlename'];
-	$lastname = $_POST['lastname'];
+	$id = $_POST['id'];
 	
-	$result = mysqli_query($db, "UPDATE employee SET emp_id='$emp_id', firstname='$firstname', middlename='$middlename', lastname='$lastname' WHERE emp_id=$emp_id");
+	$prod_name = $_POST['prod_name'];
+	$quantity = $_POST['quantity'];
+	$unit = $_POST['unit'];
+	$price = $_POST['price'];
+
+	
+	$result = mysqli_query($db, "UPDATE sales_item SET prod_name='$prod_name', quantity='$quantity', unit='$unit', price='$price' WHERE id=$id");
 		
-		header("Location: view.php");
+		header("Location: salesitemview.php");
 }
 ?>
 <?php
-$emp_id = $_GET['emp_id'];
+$id = $_GET['id'];
 
-$result = mysqli_query($db, "SELECT * FROM employee WHERE emp_id=$emp_id");
+$result = mysqli_query($db, "SELECT * FROM sales_item WHERE id=$id");
 
 while($res = mysqli_fetch_array($result))
 {
-	$emp_id = $res['emp_id'];
-	$firstname = $res['firstname'];
-	$middlename = $res['middlename'];
-	$lastname = $res['lastname'];
+	$prod_name = $res['prod_name'];
+	$quantity = $res['quantity'];
+	$unit = $res['unit'];
+	$price = $res['price'];
+
 
 }
 ?>
@@ -74,35 +78,35 @@ while($res = mysqli_fetch_array($result))
   </div>
 </div>
 <br><br><br>
-		<form name="form1" method="post" action="edit.php">
-				<div class="form-group row">
-			<label for="colFormLabel" class="col-sm-2 col-form-label">emp_id</label>
+		<form name="form1" method="post" action="salesitemedit.php">
+			<div class="form-group row">
+				<label for="colFormLabel" class="col-sm-2 col-form-label">prod_name</label>
 					<div class="col-sm-5">
-						<input type="number" name="emp_id" value="<?php echo $emp_id;?>" class="form-control" id="colFormLabel">
+						<input type="text" name="prod_name" value="<?php echo $prod_name;?>" class="form-control" id="colFormLabel">
 					</div>
 			</div>
 			<div class="form-group row">
-				<label for="colFormLabel" class="col-sm-2 col-form-label">firstname</label>
+				<label for="colFormLabel" class="col-sm-2 col-form-label">quantity</label>
 					<div class="col-sm-5">
-						<input type="text" name="firstname" value="<?php echo $firstname;?>" class="form-control" id="colFormLabel">
+						<input type="text" name="quantity" value="<?php echo $quantity;?>" class="form-control" id="colFormLabel">
 					</div>
 			</div>
 			<div class="form-group row">
-				<label for="colFormLabel" class="col-sm-2 col-form-label">middlename</label>
+				<label for="colFormLabel" class="col-sm-2 col-form-label">unit</label>
 					<div class="col-sm-5">
-						<input type="text" name="middlename" value="<?php echo $middlename;?>" class="form-control" id="colFormLabel">
+						<input type="text" name="unit" value="<?php echo $unit;?>" class="form-control" id="colFormLabel">
 					</div>
 			</div>
 			<div class="form-group row">
-				<label for="colFormLabel" class="col-sm-2 col-form-label">lastname</label>
+				<label for="colFormLabel" class="col-sm-2 col-form-label">price</label>
 					<div class="col-sm-5">
-						<input type="text" name="lastname" value="<?php echo $lastname;?>" class="form-control" id="colFormLabel">
+						<input type="number" name="price" value="<?php echo $price;?>" class="form-control" id="colFormLabel">
 					</div>
 			</div>
 			<div class="form-group row">
 				<label for="colFormLabel" class="col-sm-2 col-form-label"></label>	
 					<div class="col-sm-10">
-						<input type="hidden" name="emp_id" value=<?php echo $_GET['emp_id'];?>>
+						<input type="hidden" name="id" value=<?php echo $_GET['id'];?>>
 							<button class="btn btn-outline-success" type="submit" name="update" value="Update">update</button>
 					</div>
 			</div>

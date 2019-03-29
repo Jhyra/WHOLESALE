@@ -33,9 +33,12 @@ if(!isset($_SESSION['valid'])) {
     <a class="w3-bar-item">Tindahan ng Bayan</a>
     <!-- Right-sided navbar links. Hide them on small screens -->
     <div class="w3-right w3-hide-small">
+	  <a href="view.php" class="w3-bar-item w3-button">Employee</a>
       <a href="cusview.php" class="w3-bar-item w3-button">Customer</a>
       <a href="proview.php" class="w3-bar-item w3-button">Product</a>
-	  <a href="#menu" class="w3-bar-item w3-button">Sales</a>
+      <a href="salesview.php" class="w3-bar-item w3-button">Sales</a>
+	  <a href="salesitemview.php" class="w3-bar-item w3-button">Sales Item</a>
+	  <a href="salview.php" class="w3-bar-item w3-button">Salary</a>
       <a href="index.php" class="w3-bar-item w3-button">Logout</a>
     </div>
   </div>
@@ -46,21 +49,26 @@ if(!isset($_SESSION['valid'])) {
 include_once("connection.php");
 
 if(isset($_POST['Submit'])) {	
+	$cus_id = $_POST['cus_id'];
 	$firstname = $_POST['firstname'];
 	$lastname = $_POST['lastname'];
-	$phone_number = $_POST['phone_number'];
+	$contactno = $_POST['contactno'];
 	$address = $_POST['address'];
-	$loginId = $_SESSION['id'];
 	
 		
-	$result = mysqli_query($db, "INSERT INTO customer(firstname, lastname, phone_number, address, login_id) VALUES('$firstname', '$lastname', '$phone_number', '$address', '$loginId')");
+	$result = mysqli_query($db, "INSERT INTO customer(cus_id, firstname, lastname, contactno, address) VALUES('$cus_id', '$firstname', '$lastname', '$contactno', '$address')");
 		header('location: cusview.php');
 	} 
 ?>
 <div class="container">
 	<form action="cusadd.php" method="post" name="form1">
 		<div class="form-group row">
-		
+			<label for="colFormLabel" class="col-sm-2 col-form-label">cus_id :</label>
+				<div class="col-sm-5">
+					<input type="number" name="cus_id" class="form-control" id="colFormLabel" required>
+				</div>
+		</div>
+		<div class="form-group row">
 			<label for="colFormLabel" class="col-sm-2 col-form-label">firstname :</label>
 				<div class="col-sm-5">
 					<input type="text" name="firstname" class="form-control" id="colFormLabel" required>
@@ -75,7 +83,7 @@ if(isset($_POST['Submit'])) {
 		<div class="form-group row">
 			<label for="colFormLabel" class="col-sm-2 col-form-label">contactno :</label>
 				<div class="col-sm-5">
-					<input type="number" name="phone_number" class="form-control" id="colFormLabel" required>
+					<input type="number" name="contactno" class="form-control" id="colFormLabel" required>
 				</div>
 		</div>
 		<div class="form-group row">

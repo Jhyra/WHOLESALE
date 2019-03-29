@@ -10,10 +10,10 @@ if(!isset($_SESSION['valid'])) {
 include("connection.php");
 
 
-$id = $_GET['id'];
+$prod_id = $_GET['prod_id'];
 
 
-$result=mysqli_query($db, "DELETE FROM product WHERE id=$id");
+$result=mysqli_query($db, "DELETE FROM product WHERE prod_id=$prod_id");
 
 header("Location:proview.php");
 ?>

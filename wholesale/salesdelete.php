@@ -10,11 +10,10 @@ if(!isset($_SESSION['valid'])) {
 include("connection.php");
 
 
-$emp_id = $_GET['emp_id'];
+$sales_id = $_GET['sales_id'];
 
 
-$result=mysqli_query($db, "DELETE FROM employee WHERE emp_id=$emp_id");
+$result=mysqli_query($db, "DELETE FROM product WHERE sales_id=$sales_id");
 
-header("Location:view.php");
+header("Location:proview.php");
 ?>
-

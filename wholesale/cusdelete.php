@@ -10,10 +10,10 @@ if(!isset($_SESSION['valid'])) {
 include("connection.php");
 
 
-$id = $_GET['id'];
+$cus_id = $_GET['cus_id'];
 
 
-$result=mysqli_query($db, "DELETE FROM customer WHERE id=$id");
+$result=mysqli_query($db, "DELETE FROM customer WHERE cus_id=$cus_id");
 
 header("Location:cusview.php");
 ?>

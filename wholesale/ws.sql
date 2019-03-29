@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 12, 2019 at 01:02 AM
+-- Generation Time: Mar 26, 2019 at 11:57 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -27,22 +27,20 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `customer` (
-  `id` int(11) NOT NULL,
-  `firstname` varchar(100) NOT NULL,
-  `lastname` varchar(100) NOT NULL,
-  `phone_number` varchar(11) NOT NULL,
-  `address` varchar(100) NOT NULL,
-  `login_id` int(11) NOT NULL
+  `cus_id` int(11) NOT NULL,
+  `firstname` varchar(50) NOT NULL,
+  `lastname` varchar(50) NOT NULL,
+  `contactno` int(11) NOT NULL,
+  `address` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`id`, `firstname`, `lastname`, `phone_number`, `address`, `login_id`) VALUES
-(4, 'JAY', 'SABADO', '455', 'MOBOD', 7),
-(5, 'JAYa', 'sdsf', '2343', 'MOBOD', 7),
-(6, 'qweqwew', 'qweqwewqe', '2423434', 'sdsfsdffsd', 7);
+INSERT INTO `customer` (`cus_id`, `firstname`, `lastname`, `contactno`, `address`) VALUES
+(1, 'aa', 'aa', 1, 'aa'),
+(4, 'ee', 'ee', 0, 'ee');
 
 -- --------------------------------------------------------
 
@@ -51,25 +49,25 @@ INSERT INTO `customer` (`id`, `firstname`, `lastname`, `phone_number`, `address`
 --
 
 CREATE TABLE `employee` (
-  `id` int(11) NOT NULL,
+  `emp_id` int(11) NOT NULL,
   `firstname` varchar(100) NOT NULL,
   `middlename` varchar(50) NOT NULL,
-  `lastname` varchar(100) NOT NULL,
-  `login_id` int(11) NOT NULL
+  `lastname` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`id`, `firstname`, `middlename`, `lastname`, `login_id`) VALUES
-(2, 'ww', '0', 'w', 2),
-(6, 'z', '0', 'z', 4),
-(10, 'JAY', '0', 'SABADO', 6),
-(11, 'sxs', '0', 'sxsxqwwqwsd', 6),
-(12, 'aaa', '0', 'aaaa', 6),
-(13, 'qqq', '0', 'qqq', 6),
-(21, 'ererewr', 'erewrew', 'werwrwer', 7);
+INSERT INTO `employee` (`emp_id`, `firstname`, `middlename`, `lastname`) VALUES
+(1, 'jaeq', 'qqq', 'mqq'),
+(2, 'wwqqqaaaaa', '0222aaaa', 'wwwwaaa'),
+(3, 'dd', 'dd', 'dd'),
+(5, 'JAY', 'sd', 'SAB'),
+(6, 'u', 'u', 'u'),
+(7, 'y', 'y', 'y'),
+(55, 'JAY', 'sd', 'w'),
+(33333, 'rrr', 'rr', 'rr');
 
 -- --------------------------------------------------------
 
@@ -97,7 +95,10 @@ INSERT INTO `login` (`id`, `firstname`, `lastname`, `email`, `username`, `passwo
 (4, 'jae', 'z', 'gray21@gmail.com', 'Zax', 'f3abb86bd34cf4d52698f14c0da1dc60'),
 (5, 'ss', 'ss', 'paloyortiz021@yahoo.com', 'jae', '3691308f2a4c2f6983f2880d32e29c84'),
 (6, 'z', 'z', 'sabadoj.522@gmail.com', 'z', 'fbade9e36a3f36d3d676c1b808451dd7'),
-(7, 'a', 'a', 'sabadoj.522@gmail.com', 'a', '0cc175b9c0f1b6a831c399e269772661');
+(7, 'a', 'a', 'sabadoj.522@gmail.com', 'a', '0cc175b9c0f1b6a831c399e269772661'),
+(8, 'wq', 'qw', 'sabadoj.522@gmail.com', 'qq', '099b3b060154898840f0ebdfb46ec78f'),
+(0, 'aa', 'aa', 'sabadoj.522@gmail.com', 'aa', '4124bc0a9335c27f086f24ba207a4912'),
+(0, 'q', 'q', 'jess@gmail.com', 'qq', '099b3b060154898840f0ebdfb46ec78f');
 
 -- --------------------------------------------------------
 
@@ -106,9 +107,10 @@ INSERT INTO `login` (`id`, `firstname`, `lastname`, `email`, `username`, `passwo
 --
 
 CREATE TABLE `product` (
-  `id` int(11) NOT NULL,
-  `description` int(20) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `product` varchar(50) NOT NULL,
   `quantity` varchar(20) NOT NULL,
+  `unit` varchar(20) NOT NULL,
   `price` decimal(7,2) NOT NULL,
   `login_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -117,9 +119,52 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `description`, `quantity`, `price`, `login_id`) VALUES
-(12, 0, 'sas', '32.00', 7),
-(13, 0, 'werwrwer', '3442.00', 7);
+INSERT INTO `product` (`item_id`, `product`, `quantity`, `unit`, `price`, `login_id`) VALUES
+(16, 'dfdgf', 'eretr', 'tdfgfg', '43345.00', 7),
+(17, 'rrrrr', 'rrrr', 'rrrr', '33333.00', 7),
+(20, 'aaa', 'aaa', '111', '22.00', 7),
+(24, 'aaww', 'aaww', 'aa22', '33.00', 8),
+(27, 'sss', 'ss', 'ss', '22.00', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `salary`
+--
+
+CREATE TABLE `salary` (
+  `emp_id` int(11) NOT NULL,
+  `emp_name` varchar(50) NOT NULL,
+  `salary` decimal(6,2) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sales`
+--
+
+CREATE TABLE `sales` (
+  `sales_id` int(11) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `cus_id` int(11) NOT NULL,
+  `emp_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sales_item`
+--
+
+CREATE TABLE `sales_item` (
+  `sales_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `quantity` varchar(20) NOT NULL,
+  `unit` varchar(20) NOT NULL,
+  `price` decimal(6,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -129,62 +174,58 @@ INSERT INTO `product` (`id`, `description`, `quantity`, `price`, `login_id`) VAL
 -- Indexes for table `customer`
 --
 ALTER TABLE `customer`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `login_id` (`login_id`);
+  ADD PRIMARY KEY (`cus_id`);
 
 --
 -- Indexes for table `employee`
 --
 ALTER TABLE `employee`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_contacts_1` (`login_id`);
-
---
--- Indexes for table `login`
---
-ALTER TABLE `login`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`emp_id`);
 
 --
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `login_id` (`login_id`);
+  ADD PRIMARY KEY (`item_id`);
+
+--
+-- Indexes for table `salary`
+--
+ALTER TABLE `salary`
+  ADD KEY `emp_id` (`emp_id`);
+
+--
+-- Indexes for table `sales`
+--
+ALTER TABLE `sales`
+  ADD PRIMARY KEY (`sales_id`),
+  ADD KEY `cus_id` (`cus_id`);
+
+--
+-- Indexes for table `sales_item`
+--
+ALTER TABLE `sales_item`
+  ADD KEY `sales_id` (`sales_id`),
+  ADD KEY `item_id` (`item_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `customer`
+-- AUTO_INCREMENT for table `sales`
 --
-ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `employee`
---
-ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
---
--- AUTO_INCREMENT for table `login`
---
-ALTER TABLE `login`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT for table `product`
---
-ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+ALTER TABLE `sales`
+  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `employee`
+-- Constraints for table `sales_item`
 --
-ALTER TABLE `employee`
-  ADD CONSTRAINT `FK_contacts_1` FOREIGN KEY (`login_id`) REFERENCES `login` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `sales_item`
+  ADD CONSTRAINT `sales_item_ibfk_1` FOREIGN KEY (`sales_id`) REFERENCES `sales` (`sales_id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

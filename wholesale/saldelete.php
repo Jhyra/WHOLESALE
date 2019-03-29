@@ -13,8 +13,7 @@ include("connection.php");
 $emp_id = $_GET['emp_id'];
 
 
-$result=mysqli_query($db, "DELETE FROM employee WHERE emp_id=$emp_id");
+$result=mysqli_query($db, "DELETE FROM salary WHERE emp_id=$emp_id");
 
-header("Location:view.php");
+header("Location:salview.php");
 ?>
-

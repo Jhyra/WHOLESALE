@@ -9,7 +9,7 @@ if(!isset($_SESSION['valid'])) {
 <?php	
 include_once("connection.php");
 
-$result = mysqli_query($db, "SELECT * FROM employee  ORDER BY emp_id DESC");
+$result = mysqli_query($db, "SELECT * FROM sales_item ORDER BY sales_id DESC");
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +39,7 @@ $result = mysqli_query($db, "SELECT * FROM employee  ORDER BY emp_id DESC");
     <a class="w3-bar-item">Tindahan ng Bayan</a>
     <!-- Right-sided navbar links. Hide them on small screens -->
     <div class="w3-right w3-hide-small">
-      	  <a href="view.php" class="w3-bar-item w3-button">Employee</a>
+	  <a href="view.php" class="w3-bar-item">Employee</a>
       <a href="cusview.php" class="w3-bar-item w3-button">Customer</a>
       <a href="proview.php" class="w3-bar-item w3-button">Product</a>
 	  <a href="salesview.php" class="w3-bar-item w3-button">Sales</a>
@@ -53,27 +53,27 @@ $result = mysqli_query($db, "SELECT * FROM employee  ORDER BY emp_id DESC");
 	<div class="container">
 		<table class="table">
 			<tr bgcolor='gray'>
-			<td>emp_id</td>
-			<td>firstname</td>
-			<td>middlename</td>
-			<td>lastname</td>
+			<td>sales_id</td>
+			<td>prod_id</td>
+			<td>quantity</td>
+			<td>price</td>
 			<td>action</td>
 
 		</tr>
 		<?php
 		while($res = mysqli_fetch_array($result)) {		
 			echo "<tr>";
-			echo "<td>".$res['emp_id']."</td>";
-			echo "<td>".$res['firstname']."</td>";
-			echo "<td>".$res['middlename']."</td>";
-			echo "<td>".$res['lastname']."</td>";
-			echo "<td><a href=\"edit.php?emp_id=$res[emp_id]\">Edit</a> | <a href=\"delete.php?emp_id=$res[emp_id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";		
+			echo "<td>".$res['sales_id']."</td>";
+			echo "<td>".$res['prod_id']."</td>";
+			echo "<td>".$res['quantity']."</td>";
+			echo "<td>".$res['price']."</td>";
+			echo "<td><a href=\"salesitemedit.php?sales_id=$res[sales_id]\">Edit</a> | <a href=\"delete.php?sales_id=$res[sales_id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";		
 		}
 		?>
   <tbody>
 </table>
 <br/>
-<center><a class="btn btn-sm btn-outline-info" href="add.php">add employee</a>
+<center><a class="btn btn-sm btn-outline-info" href="salesitemadd.php">add sales</a>
 </div>
 		<br/><br/>
 	

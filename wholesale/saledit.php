@@ -13,26 +13,24 @@ include_once("connection.php");
 if(isset($_POST['update']))
 {	
 	$emp_id = $_POST['emp_id'];
-	$firstname = $_POST['firstname'];
-	$middlename = $_POST['middlename'];
-	$lastname = $_POST['lastname'];
+	$salary= $_POST['salary'];
+	$date = $_POST['date'];
 	
-	$result = mysqli_query($db, "UPDATE employee SET emp_id='$emp_id', firstname='$firstname', middlename='$middlename', lastname='$lastname' WHERE emp_id=$emp_id");
+	$result = mysqli_query($db, "UPDATE salary SET emp_id='$emp_id', salary='$salary', date='$date' WHERE emp_id=$emp_id");
 		
-		header("Location: view.php");
+		header("Location: salview.php");
 }
 ?>
 <?php
 $emp_id = $_GET['emp_id'];
 
-$result = mysqli_query($db, "SELECT * FROM employee WHERE emp_id=$emp_id");
+$result = mysqli_query($db, "SELECT * FROM salary WHERE emp_id=$emp_id");
 
 while($res = mysqli_fetch_array($result))
 {
 	$emp_id = $res['emp_id'];
-	$firstname = $res['firstname'];
-	$middlename = $res['middlename'];
-	$lastname = $res['lastname'];
+	$salary = $res['salary'];
+	$date = $res['date'];
 
 }
 ?>
@@ -65,38 +63,33 @@ while($res = mysqli_fetch_array($result))
     <!-- Right-sided navbar links. Hide them on small screens -->
     <div class="w3-right w3-hide-small">
       <a href="view.php" class="w3-bar-item w3-button">Employee</a>
+	  <a href="cusview.php" class="w3-bar-item w3-button">Customer</a>
       <a href="proview.php" class="w3-bar-item w3-button">Product</a>
-	  <a href="#menu" class="w3-bar-item w3-button">Sales</a>
-	  <a href="#menu" class="w3-bar-item w3-button">Sales Item</a>
-	  <a href="#menu" class="w3-bar-item w3-button">Salary</a>
+	  <a href="salesview.php" class="w3-bar-item w3-button">Sales</a>
+	  <a href="salesitemview.php" class="w3-bar-item w3-button">Sales Item</a>
+	  <a href="salview.php" class="w3-bar-item w3-button">Salary</a>
       <a href="index.php" class="w3-bar-item w3-button">Logout</a>
     </div>
   </div>
 </div>
 <br><br><br>
-		<form name="form1" method="post" action="edit.php">
-				<div class="form-group row">
-			<label for="colFormLabel" class="col-sm-2 col-form-label">emp_id</label>
+		<form name="form1" method="post" action="saledit.php">
+			<div class="form-group row">
+				<label for="colFormLabel" class="col-sm-2 col-form-label">emp_id</label>
 					<div class="col-sm-5">
 						<input type="number" name="emp_id" value="<?php echo $emp_id;?>" class="form-control" id="colFormLabel">
 					</div>
 			</div>
 			<div class="form-group row">
-				<label for="colFormLabel" class="col-sm-2 col-form-label">firstname</label>
+				<label for="colFormLabel" class="col-sm-2 col-form-label">salary</label>
 					<div class="col-sm-5">
-						<input type="text" name="firstname" value="<?php echo $firstname;?>" class="form-control" id="colFormLabel">
+						<input type="number" name="salary" value="<?php echo $salary;?>" class="form-control" id="colFormLabel">
 					</div>
 			</div>
 			<div class="form-group row">
-				<label for="colFormLabel" class="col-sm-2 col-form-label">middlename</label>
+				<label for="colFormLabel" class="col-sm-2 col-form-label">date</label>
 					<div class="col-sm-5">
-						<input type="text" name="middlename" value="<?php echo $middlename;?>" class="form-control" id="colFormLabel">
-					</div>
-			</div>
-			<div class="form-group row">
-				<label for="colFormLabel" class="col-sm-2 col-form-label">lastname</label>
-					<div class="col-sm-5">
-						<input type="text" name="lastname" value="<?php echo $lastname;?>" class="form-control" id="colFormLabel">
+						<input type="date" name="date" value="<?php echo $date;?>" class="form-control" id="colFormLabel">
 					</div>
 			</div>
 			<div class="form-group row">
