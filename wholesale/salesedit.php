@@ -17,7 +17,7 @@ if(isset($_POST['update']))
 	$cus_id = $_POST['cus_id'];
 	$emp_id = $_POST['emp_id'];
 	
-	$result = mysqli_query($db, "UPDATE product SET sales_id='$sales_id', date='$date', cus_id='$cus_id', emp_id='$price' WHERE sales_id=$sales_id");
+	$result = mysqli_query($db, "UPDATE sales SET sales_id='$sales_id', date='$date', cus_id='$cus_id', emp_id='$price' WHERE sales_id=$sales_id");
 		
 		header("Location: proview.php");
 }
@@ -25,7 +25,7 @@ if(isset($_POST['update']))
 <?php
 $sales_id = $_GET['sales_id'];
 
-$result = mysqli_query($db, "SELECT * FROM product WHERE sales_id=$sales_id");
+$result = mysqli_query($db, "SELECT * FROM sales WHERE sales_id=$sales_id");
 
 while($res = mysqli_fetch_array($result))
 {

@@ -9,7 +9,7 @@ if(!isset($_SESSION['valid'])) {
 <?php	
 include_once("connection.php");
 
-$result = mysqli_query($db, "SELECT * FROM sales ORDER BY sales_id DESC");
+$result = mysqli_query($db, "SELECT * FROM sales  ORDER BY sales_id DESC");
 ?>
 
 <!DOCTYPE html>
@@ -33,14 +33,13 @@ $result = mysqli_query($db, "SELECT * FROM sales ORDER BY sales_id DESC");
 	</style>
 </head>
 <body>
-<br><br>
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <div class="w3-bar w3-black w3-padding w3-card" style="letter-spacing:4px;">
     <a class="w3-bar-item">Tindahan ng Bayan</a>
     <!-- Right-sided navbar links. Hide them on small screens -->
     <div class="w3-right w3-hide-small">
-	  <a href="view.php" class="w3-bar-item w3-button">Employee</a>
+      	  <a href="view.php" class="w3-bar-item w3-button">Employee</a>
       <a href="cusview.php" class="w3-bar-item w3-button">Customer</a>
       <a href="proview.php" class="w3-bar-item w3-button">Product</a>
 	  <a href="salesview.php" class="w3-bar-item w3-button">Sales</a>
@@ -50,7 +49,7 @@ $result = mysqli_query($db, "SELECT * FROM sales ORDER BY sales_id DESC");
     </div>
   </div>
 </div>
-<br><br><br>
+<br><br><br><br><br>
 	<div class="container">
 		<table class="table">
 			<tr bgcolor='gray'>
@@ -59,6 +58,7 @@ $result = mysqli_query($db, "SELECT * FROM sales ORDER BY sales_id DESC");
 			<td>cus_id</td>
 			<td>emp_id</td>
 			<td>action</td>
+
 		</tr>
 		<?php
 		while($res = mysqli_fetch_array($result)) {		

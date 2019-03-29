@@ -17,8 +17,9 @@ if(isset($_POST['update']))
 	$lastname = $_POST['lastname'];
 	$contactno = $_POST['contactno'];
 	$address = $_POST['address'];
+
 	
-	$result = mysqli_query($db, "UPDATE customer SET cus_id='$cus_id', firstname='$firstname', lastname='$lastname', contactno='$contactno', address='$address");
+	$result = mysqli_query($db, "UPDATE customer SET cus_id='$cus_id', firstname='$firstname', lastname='$lastname', contactno='$contactno', address='$address' WHERE cus_id=$cus_id");
 		
 		header("Location: cusview.php");
 }
@@ -35,6 +36,8 @@ while($res = mysqli_fetch_array($result))
 	$lastname = $res['lastname'];
 	$contactno = $res['contactno'];
 	$address = $res['address'];
+
+
 }
 ?>
 <!DOCTYPE html>
@@ -53,12 +56,12 @@ while($res = mysqli_fetch_array($result))
 		body {
 			background-image: url(img/aa.jpg);
 			color: white;
-			width: 80%;
+			width: 100%;
 		}
 	</style>
 </head>
 <body>
-<br><br><br>
+<br><br>
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <div class="w3-bar w3-black w3-padding w3-card" style="letter-spacing:4px;">
@@ -67,18 +70,17 @@ while($res = mysqli_fetch_array($result))
     <div class="w3-right w3-hide-small">
       <a href="view.php" class="w3-bar-item w3-button">Employee</a>
       <a href="proview.php" class="w3-bar-item w3-button">Product</a>
-	  <a href="salesview.php" class="w3-bar-item w3-button">Sales</a>
-	  <a href="salesitemview.php" class="w3-bar-item w3-button">Sales Item</a>
-	  <a href="salview.php" class="w3-bar-item w3-button">Salary</a>
-	  
+	  <a href="#menu" class="w3-bar-item w3-button">Sales</a>
+	  <a href="#menu" class="w3-bar-item w3-button">Sales Item</a>
+	  <a href="#menu" class="w3-bar-item w3-button">Salary</a>
       <a href="index.php" class="w3-bar-item w3-button">Logout</a>
     </div>
   </div>
 </div>
 <br><br><br>
 		<form name="form1" method="post" action="cusedit.php">
-			<div class="form-group row">
-				<label for="colFormLabel" class="col-sm-2 col-form-label">cus_id</label>
+				<div class="form-group row">
+			<label for="colFormLabel" class="col-sm-2 col-form-label">cus_id</label>
 					<div class="col-sm-5">
 						<input type="number" name="cus_id" value="<?php echo $cus_id;?>" class="form-control" id="colFormLabel">
 					</div>
